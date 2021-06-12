@@ -1,1 +1,1 @@
-console.log("Chapter01 Part3");
+!function(){"use strict";console.log("Chapter01 Part3"),console.log("hello"),console.log("hello world!");const o={name:"Jason",age:33};console.log(o),o.age=30,console.log(o),console.log(Promise),console.log(7)}();
