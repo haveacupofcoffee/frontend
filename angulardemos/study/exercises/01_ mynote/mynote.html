@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+    </style>
+</head>
+<body ng-app="noteApp" >
+<div ng-controller="noteController">
+    <h2>My Note</h2>
+    <textarea style="width: 200px; height: 150px" ng-model="note"></textarea>
+    <div>
+        <button>Save</button>
+        <button>Read</button>
+        <button>Delete</button>
+    </div>
+    <span>Left Words: {{ getLeftWords() }}</span>
+</div>
+
+<script type="text/javascript" src="../../js/angular-1.5.5/angular.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

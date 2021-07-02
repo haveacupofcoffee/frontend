@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<!--
+1. Angular指令
+	* Angular为HTML页面扩展的: 自定义标签属性或标签
+	* 与Angular的作用域对象(scope)交互,扩展页面的动态表现力
+2. 常用指令(一)
+  * ng-app: 指定模块名，angular管理的区域
+  * ng-model： 双向绑定，输入相关标签
+  * ng-init： 初始化数据
+  * ng-click： 调用作用域对象的方法（点击时）
+  * ng-controller: 指定控制器构造函数名，内部会自动创建一个新的子作用域（外部的）
+  * ng-bind： 解决使用{{}}显示数据闪屏（在很短时间内显示{{}}）
+  * ng-repeat： 遍历数组显示数据， 数组有几个元素就会产生几个新的作用域
+    * $index, $first, $last, $middle, $odd, $even
+  * ng-show: 布尔类型， 如果为true才显示
+  * ng-hide: 布尔类型， 如果为true就隐藏
+-->
+
+<body ng-app="myApp" >
+<div ng-controller="MyCtrl">
+    <div>
+        <h2>Calculator(Auto)</h2>
+        <input type="number" ng-model="count1"/>
+        <input type="number" ng-model="price1"/>
+        <p>Total: {{count1 * price1}}</p>
+    </div>
+
+    <div>
+        <h2>Calculator(Manual)</h2>
+        <input type="number" ng-model="count2"/>
+        <input type="number" ng-model="price2"/>
+        <button ng-click="getTotal()">Calculate</button>
+        <p>Total: {{total}}</p>
+    </div>
+
+    <div>
+        <h2>Employee List</h2>
+        <ul>
+            <li ng-repeat="person in persons">Even Row: {{$even}}, Odd Row: {{$odd}}, Middle Row: {{$middle}}, Last Row: {{$last}}, First Row: {{$first}}, No.{{$index + 1}}, {{person.name}}---{{person.age}}</li>
+        </ul>
+    </div>
+
+    <div>
+        <p ng-bind="count2">{{"abc"}}</p>
+        <p ng-bind="count2">{{count2}}</p>
+    </div>
+
+    <div>
+        <button ng-click="swichContent()">Switch</button>
+        <p ng-show="isLike">He likes her!</p>
+        <p ng-hide="isLike">She does not like him!</p>
+    </div>
+
+
+</div>
+
+<script type='text/javascript' src='../../js/angular-1.5.5/angular.js'></script>
+<script type='text/javascript'>
+    angular.module('myApp', [])
+        .controller('MyCtrl', ['$scope', function($scope){
+            $scope.count1 = 1;
+            $scope.price1 = 20;
+
+            $scope.count2 = 1;
+            $scope.price2 = 10;
+            $scope.total = $scope.count2 * $scope.price2;
+            $scope.getTotal = function () {
+                $scope.total = $scope.count2 * $scope.price2;
+            };
+
+            $scope.persons = [
+                {name : 'kobe', age : 39},
+                {name : 'anverson', age : 41},
+                {name : 'weide', age : 38},
+                {name : 'tim', age : 40},
+                {name : 'curry', age : 29}
+            ];
+
+            $scope.isLike = true;
+            $scope.swichContent = function () {
+                $scope.isLike = !this.isLike;
+            }
+
+
+
+        }])
+</script>
+
+
+</body>
+</html>
