@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Component Lifecycle</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+      class LifecycleComponent extends React.Component {
+
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            opacity: 1
+          }
+
+          this.destroyComponent = this.destroyComponent.bind(this)
+        }
+
+        componentDidMount() {
+          this.intervalId = setInterval(function(){
+            console.log("interval");
+            let {opacity} = this.state
+            opacity -= 0.1
+            if(opacity <=0) {
+              opacity = 1
+            }
+            this.setState({opacity})
+          }.bind(this), 200)
+        }
+
+        destroyComponent() {
+          ReactDOM.unmountComponentAtNode(document.getElementById('demo'))
+        }
+
+        componentWillUnmount() {
+          clearInterval(this.intervalId)
+        }
+
+        render() {
+          const {opacity} = this.state
+          return (
+            <div>
+              <h2 style={{opacity: opacity}}>{this.props.msg}</h2>
+              <button onClick={this.destroyComponent}>Hide</button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<LifecycleComponent msg="React is Awsome!"/>, document.getElementById('demo'))
+  </script>
+</body>
+</html>

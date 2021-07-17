@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02_controlled_component</title>
+</head>
+<body>
+
+<div id="demo1"></div>
+<div id="demo2"></div>
+<div id="demo3"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  /*
+Scenario1: controlled component without higher order function and Currying function-
+*/
+  //define a component
+  class Form1 extends React.Component {
+
+    state = {
+      username: "",
+      password: ""
+    }
+
+    handleSubmit = (event) => {
+      event.preventDefault()
+      let {username, password} = this.state
+      alert(`input usernmae: ${username}, input password:${password}`)
+    }
+
+    saveUsername = (event) => {
+      let username = event.target.value
+      this.setState({username})
+    }
+
+    savePassword = (event) => {
+      let password = event.target.value
+      this.setState({password})
+    }
+
+
+    render() {
+      return (
+        <form action="" onSubmit={this.handleSubmit}>
+          Name: <input type="text" onChange={this.saveUsername}/>&nbsp;
+          Password: <input type="text" onChange={this.savePassword}/>&nbsp;
+          <button type="submit">Submit</button>
+        </form>
+      )
+    }
+  }
+
+  ReactDOM.render(<Form1/>, document.getElementById('demo1'))
+
+  /*
+    Scenario2: with Higher order function and Currying function
+   */
+
+  //define a component
+  class Form2 extends React.Component {
+    state = {
+      username: "",
+      password: ""
+    }
+
+    handleSubmit = (event) => {
+      event.preventDefault()
+      let {username, password} = this.state
+      alert(`input username: ${username}, input password: ${password}`)
+    }
+
+    //Higher order function and Currying
+    saveSubmitData(dataType) {
+      return (event) => {
+        let data = event.target.value
+        this.setState({[dataType]: data})
+      }
+    }
+
+
+    render() {
+      return (
+        <form action="" onSubmit={this.handleSubmit}>
+          Name: <input type="text" onChange={this.saveSubmitData('username')}/>&nbsp;
+          Password: <input type="password" onChange={this.saveSubmitData('password')}/>&nbsp;
+          <button type="submit">Submit</button>
+        </form>
+      )
+    }
+
+  }
+
+  ReactDOM.render(<Form2/>, document.getElementById("demo2"))
+
+
+  class Form3 extends React.Component {
+
+    state = {
+      username: "",
+      password: ""
+    }
+
+    handleSubmit = (event) => {
+      event.preventDefault()
+      let {username, password} = this.state
+      alert(`input username: ${username}, input password: ${password}`)
+    }
+
+    saveSubmitData = (dataTyp, event) => {
+      let data = event.target.value
+      this.setState({[dataTyp]: data})
+    }
+
+    render() {
+      return (
+        <form action="" onSubmit={this.handleSubmit}>
+          Name: <input type="text" onChange={event => this.saveSubmitData('username', event)}/>&nbsp;
+          Password: <input type="password" onChange={event => this.saveSubmitData('password', event)}/>&nbsp;
+          <button type="submit">Submit</button>
+        </form>
+
+      )
+
+    }
+  }
+
+  ReactDOM.render(<Form3/>, document.getElementById("demo3"))
+
+</script>
+</body>
+</html>

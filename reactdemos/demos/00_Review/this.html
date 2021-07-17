@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>This</title>
+</head>
+<body>
+  <script type="text/javascript">
+      function demo() {
+        console.log(this)
+      }
+
+      function demo1() {
+        "use strict"
+        console.log(this)
+      }
+
+      class ThisDemo {
+        demo() {
+          console.log(this)
+        }
+      }
+
+      demo() //this is window, since the fuction is invoked by window
+      demo1() //this is undefined, since the function is using strict mode
+
+      y = demo
+      y()  // this is window
+
+      let thisDemo = new ThisDemo()
+      thisDemo.demo() //this is ThisDemo class, since it's the instance of ThisDemo calls the demo function
+
+      let x = thisDemo
+      x.demo()  //this is ThisDemo
+
+      x.demo.call({a:1, b:2})
+
+      let z = thisDemo.demo
+      z()   //this is undefined, since it's direct call the function and the function in class enabled strict mode by default
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>

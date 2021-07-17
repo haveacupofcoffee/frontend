@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Component Form</title>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+ <script type="text/babel">
+     class FormCompoent extends React.Component{
+
+       constructor(props) {
+         super(props);
+
+         this.state = {
+           pwd: ''
+         }
+
+         this.handleSubmit = this.handleSubmit.bind(this)
+         this.handleChange = this.handleChange.bind(this)
+       }
+
+
+       handleSubmit(event) {
+         const name = this.nameInput.value
+         alert(`Input name: ${name}, password is: ${this.state.pwd}`)
+         event.preventDefault()
+       }
+
+       handleChange(event) {
+         const pwd = event.target.value
+         this.setState({pwd})
+       }
+
+       render() {
+         return (
+           <form action="/test" onSubmit={this.handleSubmit}>
+             Name:<input type="text" ref={input => this.nameInput = input}/>
+             PassWord:<input type="password" value={this.state.pwd} onChange={this.handleChange}/>
+             <input type="submit" value="Login"/>
+           </form>
+         )
+       }
+     }
+
+     ReactDOM.render(<FormCompoent/>, document.getElementById('demo'))
+ </script>
+
+
+</body>
+</html>
