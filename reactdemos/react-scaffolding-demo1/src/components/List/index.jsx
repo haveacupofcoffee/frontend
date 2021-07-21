@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
-import ListItem from "../ListItem";
 import './index.css'
 
 class List extends Component {
 
-    static propTypes = {
-        todos:PropTypes.array.isRequired,
-        updateToDos: PropTypes.func.isRequired,
-        deleteToDos: PropTypes.func.isRequired
-    }
+  render() {
+    const {users, error} = this.props
+    return (
+      <div className="row">
 
-    render() {
-        const {todos, updateToDos,deleteToDos} = this.props
-        return (
-            <ul className="todo-main">
-                {
-                    todos.map(todo => <ListItem key={todo.id} {...todo} updateToDos={updateToDos} deleteToDos={deleteToDos}/>)
-                }
-            </ul>
-        );
-    }
+        {
+          error !== '' ? <h2>{error}</h2> :
+          users.map(user => {
+          return (
+            <div className="card" key={user.id}>
+              <a rel="noreferrer" href={user.html_url} target="_blank">
+                <img alt="avartar_pic" src={user.avatar_url}
+                     style={{width: '100px'}}/>
+              </a>
+              <p className="card-text">{user.login}</p>
+            </div>
+          )
+        })}
+      </div>
+    );
+  }
 }
 
 export default List;
