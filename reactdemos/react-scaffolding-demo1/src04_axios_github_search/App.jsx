@@ -6,12 +6,23 @@ import List from "./components/List";
 
 class App extends Component {
 
+  state = {
+    users:[],
+    isFirstLoading: true,
+    isLoading: false,
+    error: ''
+  }
+
+  updateState = (stateObj) => {
+    this.setState(stateObj)
+  }
+
   render() {
 
     return (
       <div className="container">
-       <Search/>
-       <List/>
+       <Search updateState={this.updateState}/>
+        <List {...this.state}/>
       </div>
     );
   }
