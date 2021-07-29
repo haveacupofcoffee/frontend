@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-
-import Search from "./components/Search";
-import List from "./components/List";
-
+import Header from "./components/Header";
+import Content from "./components/Content";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
-
   render() {
-
     return (
-      <div className="container">
-       <Search/>
-       <List/>
+      <div>
+        <Header/>
+        <div className="row">
+          <NavBar/>
+          <Content/>
+        </div>
+
       </div>
     );
   }
