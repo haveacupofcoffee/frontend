@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import About from "../../pages/About"
 import Home from '../../pages/Home'
@@ -13,7 +13,7 @@ class Content extends Component {
             <Switch>
               <Route path="/about" component={About}/>
               <Route path="/home" component={Home}/>
-              <Route path="/home" component={About}/>
+              <Redirect to="/about"/>
             </Switch>
           </div>
         </div>
