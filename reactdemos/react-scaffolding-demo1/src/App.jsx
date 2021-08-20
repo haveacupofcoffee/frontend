@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
-import Count from './containers/Count'
-import Person from './containers/Person'
+import React, {Component, Fragment} from 'react'
+import A from './components/05_context'
+
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Count/>
-        <hr/>
-        <Person/>
-      </div>
+      <Fragment>
+        <A/>
+      </Fragment>
     );
   }
 }
