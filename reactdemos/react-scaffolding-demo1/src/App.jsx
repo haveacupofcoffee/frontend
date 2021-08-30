@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import Count from './containers/Count'
-import Person from './containers/Person'
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <Count/>
-        <hr/>
-        <Person/>
-      </div>
-    );
-  }
+    
+    handleClick = () => window.location.href='https://www.google.com'
+    
+    
+    
+    render() {
+        return (
+            <div>
+                <button onClick={this.handleClick}>Redirect to External</button>
+            </div>
+        );
+    }
 }
 
 export default App;
