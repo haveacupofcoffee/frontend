@@ -1,18 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react'
+import A from './components/05_context'
+
 
 class App extends Component {
-    
-    handleClick = () => window.location.href='https://www.google.com'
-    
-    
-    
-    render() {
-        return (
-            <div>
-                <button onClick={this.handleClick}>Redirect to External</button>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <Fragment>
+        <A/>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
