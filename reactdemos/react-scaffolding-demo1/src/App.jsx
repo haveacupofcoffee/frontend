@@ -1,15 +1,14 @@
-import React, {Component, Fragment} from 'react'
-import A from './components/05_context'
-
+import React, { Component } from 'react'
+import Game from "./components/Game"
 
 class App extends Component {
-  render() {
-    return (
-      <Fragment>
-        <A/>
-      </Fragment>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Game/>
+            </div>
+        )
+    }
 }
 
-export default App;
+export default App
