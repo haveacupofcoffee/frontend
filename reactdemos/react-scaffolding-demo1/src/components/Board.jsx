@@ -14,7 +14,6 @@ export default class Board extends PureComponent {
         //console.log("i in Board handleClick:", i)
         let newSquares = [...squares]
         if(newSquares[i] === null) {
-            
             newSquares[i] = isXNext? CONSTS.X : CONSTS.O
             this.setState({squares:newSquares, isXNext: !isXNext})
             console.log(this.hasAWinner(newSquares))
