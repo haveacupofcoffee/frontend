@@ -18,6 +18,12 @@
       class ThisDemo {
         demo() {
           console.log(this)
+          this.demo1()
+        }
+
+        demo1() {
+          console.log("this in demo1 in calss ThisDemo : ")
+          console.log(this)
         }
       }
 
@@ -33,10 +39,10 @@
       let x = thisDemo
       x.demo()  //this is ThisDemo
 
-      x.demo.call({a:1, b:2})
+      x.demo.call({a:1, b:2}) //this is object {a:1, b:2}
 
-      let z = thisDemo.demo
-      z()   //this is undefined, since it's direct call the function and the function in class enabled strict mode by default
+      /* let z = thisDemo.demo
+      z()   //th */ //is is undefined, since it's direct call the function and the function in class enabled strict mode by default
 
 
 
